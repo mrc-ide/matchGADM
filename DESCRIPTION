@@ -1,0 +1,19 @@
+Package: matchGADM
+Type: Package
+Title: Matches Old Versions of Gadm Shapefiles to New Versions.
+Version: 0.1.0
+Author: Katy Gaythorpe
+Maintainer: Katy Gaythorpe <k.gaythorpe@imperial.ac.uk>
+Description: This package takes a previous version of the gadm shapefile and creates 
+    a database mapping old to new. It does this firstly by matching the longitude and
+    latitude of the centroid; then it tries to match based on name and whether the 
+    centroid of one lies in the polygon of another. Finally, if match_nearest is TRUE, 
+    it matches the remaining entries to the nearest centroid.
+Imports: 
+    stringi,
+    dplyr,
+    sp,
+    maptools
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
