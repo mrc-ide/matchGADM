@@ -1,7 +1,7 @@
 #' Make dataframes of shape files
 #'
 #' @param shp1_new Shape files of new gadm system
-#' @param shp2_new Shape files of old gadm system
+#' @param shp1_old Shape files of old gadm system
 #'
 #' @return dataframes of shape file info
 

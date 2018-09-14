@@ -3,8 +3,8 @@
 #' @param joined_df data frame of joined shape dataframes
 #' @param from which way to match from
 #' @param to which way to match to
-#' @dat dataframe to be matched to
-#' @shp1 shape to be matched to
+#' @param dat dataframe to be matched to
+#' @param shp1 shape to be matched to
 #'
 #' @return updated dataframe
 

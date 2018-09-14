@@ -1,0 +1,29 @@
+#' matchGADM: A package for matching old and new versions of gadm.
+#'
+#' The match GADM package runs a series of matching functions to
+#' produce a dataframe of old and new ids. The first match is through
+#' a rounded combination of the longitude and latitude. The second
+#' match is through the name and if that fails, by checking which
+#' new polygon contains the old centroid. The third is an optional
+#' match which just aligns the remaining entries with the nearest
+#' centroid.
+#'
+#' @section matchGADM functions:
+#' tidy_shp tidies the shapefiles and makes sure the have no special
+#'          characters
+#' make_shp_dataframes takes the relevant info and puts into a data
+#'          frame for each version
+#' merge_by_lonlat performs a full join on the data frames by a rounded
+#'          longitude-latitude string
+#' match_gadm_by_name_poly matches empty entries by either their name
+#'          or whether their centroid falls within the polygon of the other
+#'          version
+#' match_gadm_to_nearest_centroid final function (optional) that links the
+#'          remaining entries to the closest centroid in the same country
+#' match_gadm_by_address not implemented in this version but matches using ggmap
+#'          and google maps
+#' match_gadm main matching function- puts all the rest together
+#'
+#' @docType package
+#' @name matchGADM
+NULL
