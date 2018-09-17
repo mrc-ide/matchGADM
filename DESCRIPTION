@@ -1,6 +1,6 @@
 Package: matchGADM
 Type: Package
-Title: Matches Old Versions of Gadm Shapefiles to New Versions.
+Title: Matches Old Versions of Gadm Shapefiles to New Versions
 Version: 0.1.0
 Author: Katy Gaythorpe
 Maintainer: Katy Gaythorpe <k.gaythorpe@imperial.ac.uk>
