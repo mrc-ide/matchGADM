@@ -14,7 +14,7 @@ merge_by_lonlat = function(dat_old, dat_new) {
                               "NAME_1.x", "NAME_1.y", "lon.x", "lon.y",
                               "lat.x", "lat.y", "lonlat")]
 
-    joined_df = joined_df %>% arrange(ISO.x)  # only arranged by one here
+    joined_df =  dplyr::arrange(joined_df, ISO.x)  # only arranged by one here
 
     return(joined_df)
 }

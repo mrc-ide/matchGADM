@@ -32,7 +32,7 @@ match_gadm_by_name_and_poly = function(joined_df,
     if(is.na(dat_ind)){
       inpoly = NULL
       for(p in country_ind){
-        tmp = point.in.polygon(joined_df[i, paste0("lon.",from)],
+        tmp = sp::point.in.polygon(joined_df[i, paste0("lon.",from)],
                                joined_df[i, paste0("lat.",from)],
                                shp1@polygons[[p]]@Polygons[[1]]@coords[,1],
                                shp1@polygons[[p]]@Polygons[[1]]@coords[,2])

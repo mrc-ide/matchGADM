@@ -12,6 +12,8 @@ match_gadm_to_nearest_centroid(joined_df, from = "x", to = "y", dat)
 \item{from}{which way to match from}
 
 \item{to}{which way to match to}
+
+\item{dat}{dataframe to be matched to}
 }
 \value{
 updated dataframe

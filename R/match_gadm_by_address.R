@@ -23,7 +23,7 @@ match_gadm_by_address = function(joined_df,
     tmp = NA
     infloopbreak = 0
     while(is.na(tmp) & infloopbreak<10){ #try 10 times to get an answer
-      tmp = revgeocode(location, output="more", messaging = FALSE)
+      tmp = ggmap::revgeocode(location, output="more", messaging = FALSE)
       infloopbreak = infloopbreak + 1
     }
 
@@ -33,7 +33,8 @@ match_gadm_by_address = function(joined_df,
     joined_df[i, c(paste0("ISO.",to),paste0("NAME_1.",to),paste0("ID_1.",to),paste0("lon.",to),paste0("lat.",to))] =
       dat[match_ind, c("ISO","NAME_1","ID_1","lon","lat")]
     } else {
-      unmatch_name = rbind(unmatch_name, cbind(joined_df[i, paste0("NAME_1.",from)], as.character(tmp$administrative_area_level_1) ) )
+      unmatch_name = rbind(unmatch_name, cbind(joined_df[i, paste0("NAME_1.",from)],
+                                               as.character(tmp$administrative_area_level_1) ) )
     }
   }
 

@@ -12,6 +12,8 @@ match_gadm_by_address(joined_df, from = "x", to = "y", dat)
 \item{from}{which way to match from}
 
 \item{to}{which way to match to}
+
+\item{dat}{dataframe to be matched to}
 }
 \value{
 updated dataframe of match and list of unmatched names

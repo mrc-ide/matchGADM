@@ -9,7 +9,7 @@ tidy_shp(shp1_new, shp1_old)
 \arguments{
 \item{shp1_new}{Shape files of new gadm system}
 
-\item{shp2_new}{Shape files of old gadm system}
+\item{shp1_old}{Shape files of old gadm system}
 }
 \value{
 Cleaned versions of the shapefiles

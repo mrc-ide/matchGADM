@@ -12,6 +12,10 @@ match_gadm_by_name_and_poly(joined_df, from = "x", to = "y", dat, shp1)
 \item{from}{which way to match from}
 
 \item{to}{which way to match to}
+
+\item{dat}{dataframe to be matched to}
+
+\item{shp1}{shape to be matched to}
 }
 \value{
 updated dataframe
