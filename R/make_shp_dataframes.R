@@ -8,9 +8,11 @@
 make_shp_dataframes = function(shp1_new, shp1_old) {
 
     ### ATTACH LON LAT ### --------------------------------------------------------------------------------------
-    dat_old = cbind(shp1_old@data, lon = coordinates(shp1_old)[, 1], lat = coordinates(shp1_old)[, 2])
+    dat_old = cbind(shp1_old@data, lon = sp::coordinates(shp1_old)[, 1],
+                    lat = sp::coordinates(shp1_old)[, 2])
 
-    dat_new = cbind(shp1_new@data, lon = coordinates(shp1_new)[, 1], lat = coordinates(shp1_new)[, 2])
+    dat_new = cbind(shp1_new@data, lon = sp::coordinates(shp1_new)[, 1],
+                    lat = sp::coordinates(shp1_new)[, 2])
 
     dat_new$lonlat = paste0(format(round(dat_new$lon, 2), nsmall = 2), "_", format(round(dat_new$lat, 2), nsmall = 2))
     dat_old$lonlat = paste0(format(round(dat_old$lon, 2), nsmall = 2), "_", format(round(dat_old$lat, 2), nsmall = 2))
