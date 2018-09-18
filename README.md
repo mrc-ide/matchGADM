@@ -42,7 +42,6 @@ comb_df = match_gadm(shp1_new, shp1_old, match_nearest = TRUE)
 
 The first line of `comb_df` woud then be:
 
-    #>   ID_0_old ID_0_new ID_1_old ID_1_new NAME_1_old NAME_1_new  lon_old
-    #> 1      AGO      AGO        1  AGO.1_1      Bengo      Bengo 13.88142
-    #>    lon_new   lat_old   lat_new
-    #> 1 13.88142 -8.977751 -8.977751
+| ID\_0\_old | ID\_0\_new |  ID\_1\_old| ID\_1\_new | NAME\_1\_old | NAME\_1\_new |  lon\_old|  lon\_new|   lat\_old|   lat\_new|
+|:-----------|:-----------|-----------:|:-----------|:-------------|:-------------|---------:|---------:|----------:|----------:|
+| AGO        | AGO        |           1| AGO.1\_1   | Bengo        | Bengo        |  13.88142|  13.88142|  -8.977751|  -8.977752|
