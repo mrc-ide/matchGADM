@@ -1,0 +1,68 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# matchGADM
+
+The goal of matchGADM is to create a map (a linking file) from old versions of gadm shapefiles to new ones.
+
+## Installation
+
+You can install matchGADM from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("mrc-ide/matchGADM")
+```
+
+## Example
+
+
+```{r example, eval = FALSE}
+library(maptools)
+library(matchGADM)
+library(rgdal)
+
+### VERSIONS ### --------------------------------------------------------------------------------------------
+old_version = "2"
+new_version = "36"
+
+### IMPORT ###  ---------------------------------------------------------------------------------------------
+shp1_old = readShapePoly(paste0("../gadm", old_version, "/Africa_adm1.shp"))
+shp1_new = readOGR(paste0("../gadm", new_version, "/Africa_adm1.shp"),
+                   use_iconv = TRUE, encoding = "UTF-8")
+
+#make sure names are in the right format
+names(shp1_new)[1] = "ISO"
+names(shp1_new)[3] = "ID_1"
+
+#run to get the linking dataframe
+comb_df = match_gadm(shp1_new, shp1_old, match_nearest = TRUE)
+```
+The first line of `comb_df` woud then be:
+
+```{r example_out, echo = FALSE}
+
+comb_df = data.frame(ID_0_old = "AGO",
+                     ID_0_new = "AGO",
+                     ID_1_old = 1,
+                     ID_1_new = "AGO.1_1",
+                     NAME_1_old = "Bengo",
+                     NAME_1_new = "Bengo",
+                     lon_old = 13.8814205,
+                     lon_new = 13.88142042,
+                     lat_old = -8.977751443,
+                     lat_new = -8.97775149)
+
+comb_df
+```
