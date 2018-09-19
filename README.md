@@ -20,8 +20,9 @@ Installation
 You can install matchGADM from github with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("mrc-ide/matchGADM")
+# install.packages("drat")
+drat:::add("mrc-ide")
+install.packages("matchGADM")
 ```
 
 Example
