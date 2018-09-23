@@ -2,7 +2,7 @@
 % Please edit documentation in R/grid_match.R
 \name{grid_match}
 \alias{grid_match}
-\title{fucntion that approximately matches shape file areas through a grid of points}
+\title{Function that approximately matches shape file areas through a grid of points}
 \usage{
 grid_match(shp1_old, shp1_new, increment = 0.15)
 }
@@ -11,11 +11,11 @@ grid_match(shp1_old, shp1_new, increment = 0.15)
 
 \item{shp1_new}{Shape files of new gadm system}
 
-\item{increment}{Width of the grid squares}
+\item{increment}{Width of the grid squares. Defaults to 0.15}
 }
 \value{
 proportion of old shapefiles in new shapefiles (approximate)
 }
 \description{
-fucntion that approximately matches shape file areas through a grid of points
+Function that approximately matches shape file areas through a grid of points
 }
