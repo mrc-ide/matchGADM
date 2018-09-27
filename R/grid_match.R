@@ -58,10 +58,10 @@ grid_match = function(shp1_old,
 
   ### sort out proportions ### -----------------------------------------------------------------------------------------
   proportions_df = as.data.frame(proportions)
-  rownames(proportions_df) = dat_new$NAME_1
-  colnames(proportions_df) = dat_old$NAME_1
+  rownames(proportions_df) = dat_new$ID_1
+  colnames(proportions_df) = dat_old$ID_1
 
-  propn_out = cbind( reshape2::melt(proportions_df, id.vars=NULL), "new" = rep(dat_new$NAME_1, nrow(dat_old)))
+  propn_out = cbind( reshape2::melt(proportions_df, id.vars=NULL), "new" = rep(dat_new$ID_1, nrow(dat_old)))
 
   propn_out = dplyr::filter(propn_out, value>0)
 

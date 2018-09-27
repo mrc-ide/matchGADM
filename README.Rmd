@@ -18,13 +18,17 @@ knitr::opts_chunk$set(
 
 The goal of matchGADM is to create a map (a linking file) from old versions of gadm shapefiles to new ones.
 
-## Approach
+## Main approach
 
-matchGADM links old and new shapefile entries through 3 approaches:
+`match_gadm` is the main function which links old and new shapefile entries through 3 approaches:
 
 - It rounds the longitude and latitude of the centroid, turns this into a string and performs a full join based on this value.
 - The missing links are then matched either by name or, if that fails, by checking which polygon of the new version contains the centroid of the old version,  and vice versa.
 - Finally, and this is optional, it matches the remaining entries to the nearest centroid of the new gadm version. This is the default but can be stopped by setting `match_nearest = FALSE`.
+
+## Matching by area
+
+There are two functions to match by and quanitfy the amount of overlapping area between old and new shapefiles. The first, `grid_match`, produces a grid of points which are matched to the old shape files and then distributed among the new. If the grid is coarse, this is a fast and approximate quantification of shared errors. As the grid becomes finer, it may be better to use `area_match` as this will be more accurate and faster for very fine grids. Area match quatifies the area of the intersection of the polygons in each shapefile. This is highly accurate but given the uncertainty in the polygon edges, may lead to a lot of small area matches.  
 
 ## Installation
 
