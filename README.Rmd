@@ -28,7 +28,7 @@ The goal of matchGADM is to create a map (a linking file) from old versions of g
 
 ## Matching by area
 
-There are two functions to match by and quanitfy the amount of overlapping area between old and new shapefiles. The first, `grid_match`, produces a grid of points which are matched to the old shape files and then distributed among the new. If the grid is coarse, this is a fast and approximate quantification of shared errors. As the grid becomes finer, it may be better to use `area_match` as this will be more accurate and faster for very fine grids. Area match quatifies the area of the intersection of the polygons in each shapefile. This is highly accurate but given the uncertainty in the polygon edges, may lead to a lot of small area matches.  
+There are two functions to match by and quantify the amount of overlapping area between old and new shapefiles. The first, `grid_match`, produces a grid of points which are matched to the old shape files and then distributed among the new. If the grid is coarse, this is a fast and approximate quantification of shared errors. As the grid becomes finer, it may be better to use `area_match` as this will be more accurate and faster for very fine grids. Area match quantifies the area of the intersection of the polygons in each shapefile. This is highly accurate but given the uncertainty in the polygon edges, may lead to a lot of small area matches.  
 
 ## Installation
 
@@ -64,7 +64,7 @@ names(shp1_new)[3] = "ID_1"
 #run to get the linking dataframe
 link_df = match_gadm(shp1_new, shp1_old, match_nearest = TRUE)
 ```
-The first line of `link_df` woud then be:
+The first line of `link_df` would then be:
 
 ```{r example_out, echo = FALSE}
 
