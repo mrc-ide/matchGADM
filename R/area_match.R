@@ -28,7 +28,8 @@ area_match = function(shp1_old,
 
   #Fine areas
   shp1_areas = data.frame(ID_1=shp1_old$ID_1,
-                          area=sapply(shp1_old@polygons, FUN=function(x) {slot(x, 'area')}), stringsAsFactors = FALSE)
+                          area=sapply(shp1_old@polygons, FUN=function(x) {slot(x, 'area')}),
+                          stringsAsFactors = FALSE)
 
   shp1_areas$area = as.numeric(as.character(shp1_areas$area))
 
@@ -48,4 +49,38 @@ area_match = function(shp1_old,
   names(output_df) = c("old", "new", "proportion")
 
   return(output_df)
+}
+
+
+
+#' area match for multiple countries
+#'
+#'@param shp1_old Shape files of old gadm system
+#'@param shp1_new Shape files of new gadm system
+#'@param increment Width of the grid squares. Defaults to 0.15
+#'
+#'@return grid match for multiple countries and list of unmatched countries
+#'
+area_match_multi = function(shp1_old,
+                            shp1_new){
+
+  ### REMOVE ACCENTS FOR MATCHING and COLLECT COUNTRIES ### -------------------------------------------------------
+  out = tidy_shp(shp1_new, shp1_old)
+  shp1_new = out$shp1_new
+  shp1_old = out$shp1_old
+
+  ## number of countries
+  countries = as.character( unique(shp1_old$ISO))
+
+  tmp = lapply(1:length(countries),
+               function(c){area_match(subset(shp1_old, ISO == countries[c]),
+                                      subset(shp1_new, ISO == countries[c]))} )
+
+  tmp = tmp[lapply(tmp, nrow)>0]
+
+  output_df = data.table::rbindlist( tmp )
+
+  missing = countries[which(!countries %in% unique(output_df$ISO))]
+
+  return(list(proportions = output_df, missing = missing))
 }
