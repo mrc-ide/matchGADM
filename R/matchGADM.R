@@ -34,6 +34,11 @@
 #'
 #' match_gadm main matching function- puts all the rest together
 #'
+#' area_match_multi is for matching by polygon area. It is a bit sensitive but
+#'         produces proportions of the old centroid in new
+#'
+#' grid_match_multi is a less sensitive version of area_match_multi
+#'
 #' @docType package
 #'
 #' @name matchGADM

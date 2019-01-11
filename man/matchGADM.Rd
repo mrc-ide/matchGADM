@@ -41,5 +41,10 @@ match_gadm_by_address not implemented in this version but matches using ggmap
          and google maps
 
 match_gadm main matching function- puts all the rest together
+
+area_match_multi is for matching by polygon area. It is a bit sensitive but
+        produces proportions of the old centroid in new
+
+grid_match_multi is a less sensitive version of area_match_multi
 }
 
