@@ -14,8 +14,8 @@ area_match = function(shp1_old,
   raster::projection(shp1_new) = raster::projection(shp1_old)
 
   #Zero width buffer to fix overlapping issues
-  shp1_old<-gBuffer(shp1_old, byid = T, width = 0)
-  shp1_new<-gBuffer(shp1_new, byid = T, width = 0)
+  shp1_old<-rgeos::gBuffer(shp1_old, byid = T, width = 0)
+  shp1_new<-rgeos::gBuffer(shp1_new, byid = T, width = 0)
 
   #Intersecting points
   shp1shp2int = raster::intersect(shp1_old, shp1_new)
@@ -27,7 +27,7 @@ area_match = function(shp1_old,
   row.names(areas) = row.names(shp1shp2int)
 
   #Combine attributes info and areas
-  attArea = spCbind(shp1shp2int, areas)
+  attArea = maptools::spCbind(shp1shp2int, areas)
 
   #Now to apply this stuff
   df1 = data.frame(attArea)
@@ -81,8 +81,8 @@ area_match_multi = function(shp1_old,
   shp1_old = out$shp1_old
 
   #Zero width buffer to fix overlapping issues
-  shp1_old<-gBuffer(shp1_old, byid = T, width = 0)
-  shp1_new<-gBuffer(shp1_new, byid = T, width = 0)
+  shp1_old<-rgeos::gBuffer(shp1_old, byid = T, width = 0)
+  shp1_new<-rgeos::gBuffer(shp1_new, byid = T, width = 0)
 
   ## number of countries
   countries = as.character( unique(shp1_old$ISO))
