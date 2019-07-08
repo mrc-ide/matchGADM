@@ -8,6 +8,10 @@
 #'
 match_gadm = function(shp1_new, shp1_old, match_nearest){
 
+  ### ADD ZERO WIDTH BUFFER TO REMOVE OVERLAPPING ISSUES ### ---------------------------------------------------------------
+  shp1_new<-gBuffer(shp1_new, byid = TRUE, width = 0)
+  shp1_old<-gBuffer(shp1_old, byid = TRUE, width = 0)
+
   ### REMOVE ACCENTS FOR MATCHING and COLLECT COUNTRIES ### ---------------------------------------------------------------
   out = tidy_shp(shp1_new, shp1_old)
 

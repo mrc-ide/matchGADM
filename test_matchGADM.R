@@ -27,14 +27,28 @@ old_version = "2"
 new_version = "28"
 
 ### IMPORT ###  ---------------------------------------------------------------------------------------------
-BFA_shp1_old = readShapePoly(paste0("../gadm", old_version, "/BFA_adm/BFA_adm1.shp"))
-BFA_shp1_new = readShapePoly(paste0("../gadm", new_version, "/BFA_adm/BFA_adm1.shp"))
+BFA_shp1_old = readShapePoly(paste0("data/gadm", old_version, "/BFA_adm/BFA_adm1.shp"))
+BFA_shp1_new = readShapePoly(paste0("data/gadm", new_version, "/BFA_adm/BFA_adm1.shp"))
 
 BFA_comb_df = match_gadm(BFA_shp1_new, BFA_shp1_old, match_nearest = TRUE)
 
 #------------------------------------------------------------------------------------------------------------
 
 # more accurate ish
-BFA_proportions = grid_match_multi(shp1_new = BFA_shp1_new, shp1_old = BFA_shp1_old, increment = 0.1)$proportions
+BFA_proportions1 = grid_match_multi(shp1_new = BFA_shp1_new, shp1_old = BFA_shp1_old, increment = 0.1)$proportions
 
 #out = grid_match_multi(shp1_new = shp1_new, shp1_old = shp1_old, increment = 0.1)
+time1<-Sys.time()
+BFA_proportions2 = area_match(shp1_new = shp1_old, shp1_old = shp1_new)
+time2<-Sys.time()
+time2-time1
+
+
+system.time()
+
+
+
+
+
+
+
