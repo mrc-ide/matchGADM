@@ -22,7 +22,6 @@ area_match = function(shp1_old,
 
   #Extract areas from polygon objects then attach as attribute
   areas = data.frame(area=sapply(shp1shp2int@polygons, FUN=function(x) {slot(x, 'area')}))
-  new_row_names<-sapply(shp1shp2int@polygons, FUN=function(x) {slot(x, 'ID')})
 
   row.names(areas) = row.names(shp1shp2int)
 
@@ -34,28 +33,31 @@ area_match = function(shp1_old,
   df1 = df1[order(df1[,1]),]
 
   #Fine areas
-  shp1_areas = data.frame(ID_1=shp1_old$ID_1,
-                          area=sapply(shp1_old@polygons, FUN=function(x) {slot(x, 'area')}),
+  shp1_areas = data.frame(ID_1 = as.character(shp1_old$SP_ID),
+                          area = sapply(shp1_old@polygons, FUN = function(x) {slot(x, 'area')}),
                           stringsAsFactors = FALSE)
 
   shp1_areas$area = as.numeric(as.character(shp1_areas$area))
 
-  shp1_areas = stats::aggregate(shp1_areas, by=list(shp1_areas$ID_1), FUN=sum)[ ,c(1, 3)]
+  shp1_areas = stats::aggregate(shp1_areas[, "area"], by=list(shp1_areas$ID_1), FUN=sum)
 
-  names(shp1_areas) = c("ID_1","area")
+  names(shp1_areas) = c("ID_1", "area")
 
-  df1$prop = sapply(1:dim(df1)[1],
-                    function(x){oldid1 = df1[, "ID_1.1"][x]
-                    all_area = shp1_areas[which(shp1_areas$ID_1 %in% oldid1), "area"]
-                    df1[x, "area"]/all_area
-                    })
+  df1$prop = sapply(1:nrow(df1), function(x){
+    oldid1 = as.character(df1[, "SP_ID"][x])
+    all_area = shp1_areas[which(shp1_areas$ID_1 %in% oldid1), "area"]
+    df1[x, "area"]/all_area
+  })
 
   ## output same as grid_match
 
-  output_df = df1[, c("ID_1.1", "ID_1.2", "prop")]
-  names(output_df) = c("old", "new", "proportion")
+  output_df = df1[, c("SP_ID", "ID_1.2", "prop")]
+  output_df[, "ID_1.2"]<-gsub("\\.|_1", "", output_df[, "ID_1.2"])
+  names(output_df) = c("old_id", "new_id", "proportion")
+  output_df<-output_df[order(output_df$old_id, output_df$new_id), ]
 
   output_df
+
 }
 
 
