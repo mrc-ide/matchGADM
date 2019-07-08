@@ -15,7 +15,7 @@ shp1_new = readOGR(paste0("data/gadm", new_version, "/Africa_adm1.shp"),
 names(shp1_new)[1] = "ISO"
 names(shp1_new)[3] = "ID_1"
 
-comb_df = match_gadm(shp1_new, shp1_old, match_nearest = TRUE)
+comb_df = area_match_multi(shp1_new, shp1_old)
 
 #documentation
 package?matchGADM
@@ -30,7 +30,8 @@ new_version = "28"
 BFA_shp1_old = readShapePoly(paste0("data/gadm", old_version, "/BFA_adm/BFA_adm1.shp"))
 BFA_shp1_new = readShapePoly(paste0("data/gadm", new_version, "/BFA_adm/BFA_adm1.shp"))
 
-BFA_comb_df = match_gadm(BFA_shp1_new, BFA_shp1_old, match_nearest = TRUE)
+BFA_comb_df = match_gadm(shp1_new = BFA_shp1_new,
+                         shp1_old = BFA_shp1_old, match_nearest = TRUE)
 
 #------------------------------------------------------------------------------------------------------------
 
