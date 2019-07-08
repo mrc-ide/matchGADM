@@ -12,12 +12,19 @@ area_match = function(shp1_old,
   #Make sure projections are the same
   raster::projection(shp1_new) = raster::projection(shp1_old)
 
+  #Zero width buffer to fix overlapping issues
+  shp1_old<-gBuffer(shp1_old, byid = T, width = 0)
+  shp1_new<-gBuffer(shp1_new, byid = T, width = 0)
+
   #Intersecting points
   shp1shp2int = raster::intersect(shp1_old, shp1_new)
+  row.names(shp1shp2int)<-as.character(1:nrow(shp1shp2int))
 
   #Extract areas from polygon objects then attach as attribute
   areas = data.frame(area=sapply(shp1shp2int@polygons, FUN=function(x) {slot(x, 'area')}))
-  row.names(areas) = sapply(shp1shp2int@polygons, FUN=function(x) {slot(x, 'ID')})
+  new_row_names<-sapply(shp1shp2int@polygons, FUN=function(x) {slot(x, 'ID')})
+
+  row.names(areas) = row.names(shp1shp2int)
 
   #Combine attributes info and areas
   attArea = spCbind(shp1shp2int, areas)
@@ -33,14 +40,14 @@ area_match = function(shp1_old,
 
   shp1_areas$area = as.numeric(as.character(shp1_areas$area))
 
-  shp1_areas = stats::aggregate(shp1_areas, by=list(shp1_areas$ID_1), FUN=sum)[,c(1,3)]
+  shp1_areas = stats::aggregate(shp1_areas, by=list(shp1_areas$ID_1), FUN=sum)[ ,c(1, 3)]
 
   names(shp1_areas) = c("ID_1","area")
 
   df1$prop = sapply(1:dim(df1)[1],
-                    function(x){oldid1 = df1[,"ID_1.1"][x]
-                    all_area = shp1_areas[which(shp1_areas$ID_1 %in% oldid1),"area"]
-                    df1[x,"area"]/all_area
+                    function(x){oldid1 = df1[, "ID_1.1"][x]
+                    all_area = shp1_areas[which(shp1_areas$ID_1 %in% oldid1), "area"]
+                    df1[x, "area"]/all_area
                     })
 
   ## output same as grid_match
@@ -48,7 +55,7 @@ area_match = function(shp1_old,
   output_df = df1[, c("ID_1.1", "ID_1.2", "prop")]
   names(output_df) = c("old", "new", "proportion")
 
-  return(output_df)
+  output_df
 }
 
 
@@ -68,6 +75,10 @@ area_match_multi = function(shp1_old,
   out = tidy_shp(shp1_new, shp1_old)
   shp1_new = out$shp1_new
   shp1_old = out$shp1_old
+
+  #Zero width buffer to fix overlapping issues
+  shp1_old<-gBuffer(shp1_old, byid = T, width = 0)
+  shp1_new<-gBuffer(shp1_new, byid = T, width = 0)
 
   ## number of countries
   countries = as.character( unique(shp1_old$ISO))
