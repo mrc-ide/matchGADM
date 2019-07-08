@@ -2,6 +2,7 @@
 library(maptools)
 library(matchGADM)
 library(rgdal)
+library(rgeos)
 
 ### VERSIONS ### --------------------------------------------------------------------------------------------
 old_version = "2"
