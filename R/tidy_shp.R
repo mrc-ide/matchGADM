@@ -3,6 +3,7 @@
 #' @param shp1_new Shape files of new gadm system
 #' @param shp1_old Shape files of old gadm system
 #'
+#' @export
 #' @return Cleaned versions of the shapefiles
 
 tidy_shp = function(shp1_new, shp1_old) {

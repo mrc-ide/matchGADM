@@ -4,6 +4,7 @@
 #'@param shp1_new Shape files of new gadm system
 #'@param increment Width of the grid squares. Defaults to 0.15
 #'
+#'@export
 #'@return proportion of old shapefiles in new shapefiles
 
 area_match = function(shp1_old,
@@ -68,6 +69,7 @@ area_match = function(shp1_old,
 #'@param shp1_new Shape files of new gadm system
 #'@param increment Width of the grid squares. Defaults to 0.15
 #'
+#'@export
 #'@return grid match for multiple countries and list of unmatched countries
 #'
 area_match_multi = function(shp1_old,

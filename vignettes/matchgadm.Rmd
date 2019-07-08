@@ -1,0 +1,54 @@
+---
+title: "matchGADM usage"
+author: "Katy Gaythorpe and Arran Hamlet"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+`matchGADM` is a package for converting between shapefiles whether they be from gadm or otherwise.
+The result is a data frame of proportions from old to new in order to ease moving data such as population sizes between old and new shapefiles.
+
+# Example usage
+
+We load some example data to show potential usage for the main functions, `area_match` and `area_match_multi`.
+
+```{r , eval=FALSE}
+
+library(maptools)
+library(matchGADM)
+library(rgdal)
+library(rgeos)
+
+### VERSIONS ### --------------------------------------------------------------------------------------------
+old_version = "2"
+new_version = "36"
+
+### IMPORT ###  ---------------------------------------------------------------------------------------------
+shp1_old = readShapePoly(paste0("data/gadm", old_version, "/Africa_adm1.shp"))
+shp1_new = readOGR(paste0("data/gadm", new_version, "/Africa_adm1.shp"),
+                   use_iconv = TRUE, encoding = "UTF-8")
+
+names(shp1_new)[1] = "ISO"
+names(shp1_new)[3] = "ID_1"
+
+ptm <- proc.time()
+comb_df = area_match_multi(shp1_old, shp1_new)
+proc.time() - ptm
+
+```
+
+One could also use `area_match` in the same way if the boundaries of countries are known to have changed; however, this will be slower to implement.
+

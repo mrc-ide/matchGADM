@@ -6,45 +6,5 @@
 \alias{matchGADM-package}
 \title{matchGADM: A package for matching old and new versions of gadm.}
 \description{
-The match GADM package runs a series of matching functions to
-produce a dataframe of old and new ids. The first match is through
-a rounded combination of the longitude and latitude. The second
-match is through the name and if that fails, by checking which
-new polygon contains the old centroid. The third is an optional
-match which just aligns the remaining entries with the nearest
-centroid.
+matchGADM: A package for matching old and new versions of gadm.
 }
-\details{
-This currently works at adm1 level but could be extended to work at
-country or adm2 levels. Due to this, the names in the shapefile have
-to include "ISO" and "ID_1" which is not the case for GADM3.6.
-}
-\section{matchGADM functions}{
-
-tidy_shp tidies the shapefiles and makes sure the have no special
-         characters
-
-make_shp_dataframes takes the relevant info and puts into a data
-         frame for each version
-
-merge_by_lonlat performs a full join on the data frames by a rounded
-         longitude-latitude string
-
-match_gadm_by_name_poly matches empty entries by either their name
-         or whether their centroid falls within the polygon of the other
-         version
-
-match_gadm_to_nearest_centroid final function (optional) that links the
-         remaining entries to the closest centroid in the same country
-
-match_gadm_by_address not implemented in this version but matches using ggmap
-         and google maps
-
-match_gadm main matching function- puts all the rest together
-
-area_match_multi is for matching by polygon area. It is a bit sensitive but
-        produces proportions of the old centroid in new
-
-grid_match_multi is a less sensitive version of area_match_multi
-}
-
