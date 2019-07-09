@@ -35,7 +35,7 @@ area_match = function(shp1_old,
 
   #Fine areas
   shp1_areas = data.frame(ID_1 = as.character(shp1_old$SP_ID),
-                          area = sapply(shp1_old@polygons, FUN = function(x) {slot(x, 'area')}),
+                          area = sapply(shp1_old@polygons, FUN = function(x) {methods::slot(x, 'area')}),
                           stringsAsFactors = FALSE)
 
   shp1_areas$area = as.numeric(as.character(shp1_areas$area))

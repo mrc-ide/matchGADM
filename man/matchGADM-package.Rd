@@ -4,12 +4,20 @@
 \name{matchGADM-package}
 \alias{matchGADM}
 \alias{matchGADM-package}
-\title{matchGADM: What the Package Does (One Line, Title Case)}
+\title{matchGADM: Converts between shape files}
 \description{
-What the package does (one paragraph).
+This package contains two main functions which both map from 
+    one shapefile to another through matching the area. The resulting output 
+    is a data frame of proportions from each admin unit in the old to the new.
+    This can be used to convert population sizes from one map to another.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Arran Hamlet \email{arran.hamlet14@imperial.ac.uk}
+
+Authors:
+\itemize{
+  \item Katy Gaythorpe
+}
 
 }
 \keyword{internal}

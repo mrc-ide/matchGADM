@@ -1,13 +1,29 @@
 Package: matchGADM
-Title: What the Package Does (One Line, Title Case)
+Title: Converts between shape files
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    c(person(given = "Arran",
+           family = "Hamlet",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
+           email = "arran.hamlet14@imperial.ac.uk"),
+    person(given = "Katy",
+           family = "Gaythorpe",
+           role = c("aut")))
+Description: This package contains two main functions which both map from 
+    one shapefile to another through matching the area. The resulting output 
+    is a data frame of proportions from each admin unit in the old to the new.
+    This can be used to convert population sizes from one map to another.
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr
+Imports: 
+    dplyr,
+    raster,
+    maptools,
+    rgeos,
+    stats,
+    stringi,
+    knitr,
+    methods

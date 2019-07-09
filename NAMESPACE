@@ -2,5 +2,4 @@
 
 export(area_match)
 export(area_match_multi)
-export(matchGADM)
 export(tidy_shp)
